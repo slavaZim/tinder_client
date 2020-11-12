@@ -26,7 +26,7 @@ module Types
     end
 
     # This aliases all the Dry::Types keys as class methods
-    Dry::Types.type_keys.each do |method_name|
+    Dry::Types.type_map.keys.each do |method_name|
       define_method method_name do
         Dry::Types[method_name]
       end
