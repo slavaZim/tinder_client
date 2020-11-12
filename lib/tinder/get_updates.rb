@@ -33,7 +33,7 @@ module Tinder
     attribute? :updated_at, Types.string
     attribute? :liker_id, Types.string
     attribute? :match_id, Types.string
-    attribute? :is_liked, Types.bool
+    attribute? :is_liked, Types::Nominal::Bool
   end
 
   class Person < Dry::Struct
@@ -48,23 +48,23 @@ module Tinder
 
   class Match < Dry::Struct
     attribute? :_id, Types.string
-    attribute? :closed, Types.bool
+    attribute? :closed, Types::Nominal::Bool
     attribute? :common_friend_count, Types.integer
     attribute? :common_like_count, Types.integer
     attribute? :created_date, Types.string
-    attribute? :dead, Types.bool
-    attribute? :following, Types.bool
-    attribute? :following_moments, Types.bool
+    attribute? :dead, Types::Nominal::Bool
+    attribute? :following, Types::Nominal::Bool
+    attribute? :following_moments, Types::Nominal::Bool
     attribute? :id, Types.string
-    attribute? :is_boost_match, Types.bool
-    attribute? :is_fast_match, Types.bool
-    attribute? :is_super_like, Types.bool
+    attribute? :is_boost_match, Types::Nominal::Bool
+    attribute? :is_fast_match, Types::Nominal::Bool
+    attribute? :is_super_like, Types::Nominal::Bool
     attribute? :last_activity_date, Types.string
     attribute? :message_count, Types.integer
     attribute? :messages, Types.array.of(Message)
-    attribute? :muted, Types.bool
+    attribute? :muted, Types::Nominal::Bool
     attribute? :participants, Types.array
-    attribute? :pending, Types.bool
+    attribute? :pending, Types::Nominal::Bool
     attribute? :person, Person
     attribute? :readreceipt, Types.hash
     attribute? :seen, Types.hash

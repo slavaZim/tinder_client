@@ -23,7 +23,7 @@ module Tinder
   class ActiveProfile < Dry::Struct
 
     attribute? :account do
-      attribute? :is_email_verified, Types.bool
+      attribute? :is_email_verified, Types::Nominal::Bool
       attribute? :account_email, Types.string
       attribute? :account_phone_number, Types.string
     end
@@ -43,9 +43,9 @@ module Tinder
     attribute? :email_settings do
       attribute? :email, Types.string
       attribute? :email_settings do
-        attribute? :promotions, Types.bool
-        attribute? :messages, Types.bool
-        attribute? :new_matches, Types.bool
+        attribute? :promotions, Types::Nominal::Bool
+        attribute? :messages, Types::Nominal::Bool
+        attribute? :new_matches, Types::Nominal::Bool
       end
     end
     attribute? :instagram do
@@ -53,9 +53,9 @@ module Tinder
       attribute? :profile_picture, Types.string
       attribute? :media_count, Types.integer
       attribute? :last_fetch_time, Types.string
-      attribute? :completed_initial_fetch, Types.bool
+      attribute? :completed_initial_fetch, Types::Nominal::Bool
       attribute? :photos, Types.array
-      attribute? :should_reauthenticate, Types.bool
+      attribute? :should_reauthenticate, Types::Nominal::Bool
     end
     attribute? :likes do
       attribute? :likes_remaining, Types.integer
@@ -63,9 +63,9 @@ module Tinder
     attribute? :notifications, Types.array
     attribute? :plus_control do
       attribute? :discoverable_party, Types.string
-      attribute? :hide_ads, Types.bool
-      attribute? :hide_age, Types.bool
-      attribute? :hide_distance, Types.bool
+      attribute? :hide_ads, Types::Nominal::Bool
+      attribute? :hide_age, Types::Nominal::Bool
+      attribute? :hide_distance, Types::Nominal::Bool
       attribute? :blend, Types.string
     end
     attribute? :products, Types.hash
@@ -85,7 +85,7 @@ module Tinder
       attribute? :status, Types.string
     end
     attribute? :travel do
-      attribute? :is_traveling, Types.bool
+      attribute? :is_traveling, Types::Nominal::Bool
     end
     attribute? :tutorials, Types.array
     attribute? :user do
@@ -96,7 +96,7 @@ module Tinder
       attribute? :birth_date, Types.string
       attribute? :create_date, Types.string
       attribute? :crm_id, Types.string
-      attribute? :discoverable, Types.bool
+      attribute? :discoverable, Types::Nominal::Bool
       attribute? :distance_filter, Types.integer
       attribute? :gender, Types.integer
       attribute? :gender_filter, Types.integer

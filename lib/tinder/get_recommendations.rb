@@ -36,8 +36,8 @@ module Tinder
     attribute? :crop_info do
       attribute? :user, PhotoMetadata
       attribute? :algo, PhotoMetadata
-      attribute? :processed_by_bullseye, Types.bool
-      attribute? :user_customized, Types.bool
+      attribute? :processed_by_bullseye, Types::Nominal::Bool
+      attribute? :user_customized, Types::Nominal::Bool
       attribute? :url, Types.string
       attribute? :processedFiles, Types.array
       attribute? :fileName, Types.string
@@ -59,9 +59,9 @@ module Tinder
     attribute? :city do
       attribute? :name, Types.string
     end
-    attribute? :is_traveling, Types.bool
-    attribute? :hide_age, Types.bool
-    attribute? :hide_distance, Types.bool
+    attribute? :is_traveling, Types::Nominal::Bool
+    attribute? :hide_age, Types::Nominal::Bool
+    attribute? :hide_distance, Types::Nominal::Bool
   end
 
   # Return this object
