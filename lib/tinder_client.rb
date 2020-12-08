@@ -9,7 +9,6 @@ require 'tinder/get_updates'
 require 'tinder/profile'
 require 'tinder/like'
 require 'tinder/pass'
-require 'authgateway_pb'
 
 module Tinder
 
