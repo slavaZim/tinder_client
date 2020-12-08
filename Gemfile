@@ -21,5 +21,9 @@ gem 'multi_json'
 gem 'ruby-debug-ide'
 gem 'debase'
 
+gem 'protobuf'
+
+gem 'google-protobuf'
+
 # Specify your gem's dependencies in tinder.gemspec
 gemspec

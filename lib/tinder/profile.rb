@@ -24,24 +24,24 @@ module Tinder
 
     attribute? :account do
       attribute? :is_email_verified, Types::Nominal::Bool
-      attribute? :account_email, Types.string
-      attribute? :account_phone_number, Types.string
+      attribute? :account_email, Types::Nominal::String
+      attribute? :account_phone_number, Types::Nominal::String
     end
     attribute? :boost do
-      attribute? :duration, Types.integer
-      attribute? :allotment, Types.integer
-      attribute? :allotment_used, Types.integer
-      attribute? :allotment_remaining, Types.integer
-      attribute? :internal_remaining, Types.integer
-      attribute? :purchased_remaining, Types.integer
-      attribute? :remaining, Types.integer
-      attribute? :super_boost_purchased_remaining, Types.integer
-      attribute? :boost_refresh_amount, Types.integer
-      attribute? :boost_refresh_interval, Types.integer
-      attribute? :boost_refresh_interval_unit, Types.string
+      attribute? :duration, Types::Nominal::Integer
+      attribute? :allotment, Types::Nominal::Integer
+      attribute? :allotment_used, Types::Nominal::Integer
+      attribute? :allotment_remaining, Types::Nominal::Integer
+      attribute? :internal_remaining, Types::Nominal::Integer
+      attribute? :purchased_remaining, Types::Nominal::Integer
+      attribute? :remaining, Types::Nominal::Integer
+      attribute? :super_boost_purchased_remaining, Types::Nominal::Integer
+      attribute? :boost_refresh_amount, Types::Nominal::Integer
+      attribute? :boost_refresh_interval, Types::Nominal::Integer
+      attribute? :boost_refresh_interval_unit, Types::Nominal::String
     end
     attribute? :email_settings do
-      attribute? :email, Types.string
+      attribute? :email, Types::Nominal::String
       attribute? :email_settings do
         attribute? :promotions, Types::Nominal::Bool
         attribute? :messages, Types::Nominal::Bool
@@ -49,58 +49,58 @@ module Tinder
       end
     end
     attribute? :instagram do
-      attribute? :username, Types.string
-      attribute? :profile_picture, Types.string
-      attribute? :media_count, Types.integer
-      attribute? :last_fetch_time, Types.string
+      attribute? :username, Types::Nominal::String
+      attribute? :profile_picture, Types::Nominal::String
+      attribute? :media_count, Types::Nominal::Integer
+      attribute? :last_fetch_time, Types::Nominal::String
       attribute? :completed_initial_fetch, Types::Nominal::Bool
       attribute? :photos, Types.array
       attribute? :should_reauthenticate, Types::Nominal::Bool
     end
     attribute? :likes do
-      attribute? :likes_remaining, Types.integer
+      attribute? :likes_remaining, Types::Nominal::Integer
     end
     attribute? :notifications, Types.array
     attribute? :plus_control do
-      attribute? :discoverable_party, Types.string
+      attribute? :discoverable_party, Types::Nominal::String
       attribute? :hide_ads, Types::Nominal::Bool
       attribute? :hide_age, Types::Nominal::Bool
       attribute? :hide_distance, Types::Nominal::Bool
-      attribute? :blend, Types.string
+      attribute? :blend, Types::Nominal::String
     end
     attribute? :products, Types.hash
     attribute? :purchase, Types.hash
     attribute? :spotify, Types.hash
     attribute? :super_likes do
-      attribute? :remaining, Types.integer
-      attribute? :alc_remaining, Types.integer
-      attribute? :new_alc_remaining, Types.integer
-      attribute? :allotment, Types.integer
-      attribute? :superlike_refresh_amount, Types.integer
-      attribute? :superlike_refresh_interval, Types.integer
-      attribute? :superlike_refresh_interval_unit, Types.string
-      attribute? :resets_at, Types.string.optional
+      attribute? :remaining, Types::Nominal::Integer
+      attribute? :alc_remaining, Types::Nominal::Integer
+      attribute? :new_alc_remaining, Types::Nominal::Integer
+      attribute? :allotment, Types::Nominal::Integer
+      attribute? :superlike_refresh_amount, Types::Nominal::Integer
+      attribute? :superlike_refresh_interval, Types::Nominal::Integer
+      attribute? :superlike_refresh_interval_unit, Types::Nominal::String
+      attribute? :resets_at, Types::Nominal::String.optional
     end
     attribute? :tinder_u do
-      attribute? :status, Types.string
+      attribute? :status, Types::Nominal::String
     end
     attribute? :travel do
       attribute? :is_traveling, Types::Nominal::Bool
     end
     attribute? :tutorials, Types.array
     attribute? :user do
-      attribute? :_id, Types.string
-      attribute? :age_filter_max, Types.integer
-      attribute? :age_filter_min, Types.integer
-      attribute? :bio, Types.string
-      attribute? :birth_date, Types.string
-      attribute? :create_date, Types.string
-      attribute? :crm_id, Types.string
+      attribute? :_id, Types::Nominal::String
+      attribute? :age_filter_max, Types::Nominal::Integer
+      attribute? :age_filter_min, Types::Nominal::Integer
+      attribute? :bio, Types::Nominal::String
+      attribute? :birth_date, Types::Nominal::String
+      attribute? :create_date, Types::Nominal::String
+      attribute? :crm_id, Types::Nominal::String
       attribute? :discoverable, Types::Nominal::Bool
-      attribute? :distance_filter, Types.integer
-      attribute? :gender, Types.integer
-      attribute? :gender_filter, Types.integer
-      attribute? :name, Types.string
+      attribute? :distance_filter, Types::Nominal::Integer
+      attribute? :gender, Types::Nominal::Integer
+      attribute? :gender_filter, Types::Nominal::Integer
+      attribute? :name, Types::Nominal::String
       attribute? :photos, Types.array
     end
   end

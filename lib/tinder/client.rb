@@ -16,12 +16,23 @@ module Tinder
       updates:         "/updates"
     }
 
+    ENDPOINTS_V3 = {
+        login:           "/v3/auth/login?locale=ru",
+        validate:        "/v3/auth/sms/validate?auth_type=sms",
+    }
+
     attr_accessor :api_token
     attr_accessor :refresh_token
 
-    def post(url, **data)
-      response = Faraday.post(url, JSON.generate(data), headers)
-      JSON.parse(response.body) unless response.body.nil?
+    def post(url, version = :v2, **data)
+      case version
+      when :v2
+        response = Faraday.post(url, JSON.generate(data), headers(version))
+        JSON.parse(response.body) unless response.body.nil?
+      when :v3
+        response = Faraday.post(url, data[:payload].to_proto, headers(version))
+        puts response.body.inspect
+      end
     end
 
     def get(url, **data)
@@ -32,8 +43,11 @@ module Tinder
 
     # @param phone_number String
     def request_code(phone_number)
-      response = post(endpoint(:request_code), phone_number: phone_number)
-      response.dig('data', 'sms_sent') || fail(UnexpectedResponse(response))
+      phone = Tinder::Services::Authgateway::Phone.new(phone: phone_number)
+      payload =  Tinder::Services::Authgateway::AuthGatewayRequest.new(phone: phone)
+      response = post(endpoint(:login, :v3), :v3, payload: payload)
+      puts response.inspect
+      response.dig('data', 'sms_sent') || fail(UnexpectedResponse.new(response))
     end
 
     # @param phone_number String Your phone number
@@ -45,7 +59,7 @@ module Tinder
                is_update:    false }
 
       response       = post(endpoint(:validate), data)
-      @refresh_token = response.dig('data', 'refresh_token') || fail(UnexpectedResponse(response))
+      @refresh_token = response.dig('data', 'refresh_token') || fail(UnexpectedResponse.new(response))
     end
 
     # @param phone_number String Your phone number
@@ -53,25 +67,30 @@ module Tinder
     # @return String The API key
     def login(phone_number, refresh_token)
       data     = { refresh_token: refresh_token, phone_number: phone_number }
-      response = post(endpoint(:login), data)
+      response = post(endpoint(:login),  data)
 
-      @api_token   = response.dig('data', 'api_token') || fail(UnexpectedResponse(response))
+      @api_token   = response.dig('data', 'api_token') || fail(UnexpectedResponse.new(response))
       @id          = response['data']['_id']
       @is_new_user = response['data']['is_new_user']
       @api_token
     end
 
-    def endpoint(action)
-      "#{BASE_URI}#{ENDPOINTS[action]}"
+    def endpoint(action, version = :v2)
+      case version
+      when :v2
+        "#{BASE_URI}#{ENDPOINTS[action]}"
+      when :v3
+        "#{BASE_URI}#{ENDPOINTS_V3[action]}"
+      end
     end
 
     protected
 
-    def headers
+    def headers(endpoint = :v2)
       {
         "app_version":  "6.9.4",
         "platform":     "ios",
-        "content-type": "application/json",
+        "content-type": endpoint == :v2 ? "application/json" : 'application/x-google-protobuf',
         "User-agent":   "Tinder/7.5.3 (iPhone; iOS 10.3.2; Scale/2.00)",
         "Accept":       "application/json",
         "X-Auth-Token": api_token

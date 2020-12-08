@@ -10,10 +10,10 @@ end
 # The following allow you to access types with Types.<type reference>
 #
 # ```ruby
-# email = Types.string.constrained(
+# email = Types::Nominal::String.constrained(
 #   format: /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i
 # )
-# drinking_age = Types.integer.constrained(gt: 21)
+# drinking_age = Types::Nominal::Integer.constrained(gt: 21)
 # ````
 module Types
   include Dry.Types()
@@ -27,6 +27,7 @@ module Types
 
     # This aliases all the Dry::Types keys as class methods
     Dry::Types.type_map.keys.each do |method_name|
+      puts method_name
       define_method method_name do
         Dry::Types[method_name]
       end
