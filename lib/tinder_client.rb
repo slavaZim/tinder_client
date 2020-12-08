@@ -1,5 +1,4 @@
 require 'dry_helper.rb'
-require 'google/protobuf'
 require "json"
 require 'faraday'
 require 'tinder/client'
